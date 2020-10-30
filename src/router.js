@@ -6,6 +6,7 @@ import DcHeroes from './pages/DcHeroes.vue'
 import Calendar from './pages/Calendar.vue'
 import Home from './pages/Home.vue'
 import Markdown from './pages/Markdown.vue'
+import Slider from './pages/Slider.vue'
 
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
     { path: '/dc-heroes', component: DcHeroes },
     { path: '/calendar', component: Calendar },
     { path: '/markdown', component: Markdown },
+    { path: '/slider', component: Slider },
 ]
 
 

@@ -12,6 +12,18 @@
       :to="item.to"
       >{{ item.title }}</router-link
     >
+    <button class="mx-2" @click="$emit('open-login-modal')">login</button>
+    <!-- 
+      EMIT 
+      burada durum şu bir modal açacağız, acacak buton burada, çünkü header da buton görünecek, tıklayınca LoginModal.vue adında comp çalışacak, ve bizim login ekranı görünecek, 
+      bunu buradan emitleyeceğiz ve kullanacağımız componentten bu emit i yakalayacağız, burada open-login-modal adında bir event emitledik, bunu App.vue daki <AppHeader /> yakalayacağız,
+       yani bu emiti dinleyecek ve yakalayacak komut
+       <AppHeader @open-login-header="isLoginOpen = true"/>
+       burada kebab-case kullanıldığını tavsiye ediyor, 
+
+      şimdi burada AppHeader.vue yani buradaki button olayı başlatıyor tıklayınca open-login-modal adını verdiğimiz eventi emitliyor
+  şimdi bunu bir yerden bu verdiğimiz isim ile yakalayacağız, 
+      -->
   </nav>
 </template>
 
@@ -23,6 +35,7 @@ export default {
         { title: "dc heroes", to: "/dc-heroes" },
         { title: "calendar", to: "/calendar" },
         { title: "markdown", to: "/markdown" },
+        { title: "slider", to: "/slider" },
       ],
     };
   },
