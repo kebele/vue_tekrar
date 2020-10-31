@@ -12,7 +12,8 @@
       :to="item.to"
       >{{ item.title }}</router-link
     >
-    <button class="mx-2" @click="$emit('open-login-modal')">login</button>
+    <button  v-if="isLoggedIn" class="mx-2" @click="logout">logout</button>
+    <button v-else class="mx-2" @click="$emit('open-login-modal')">login</button>
     <!-- 
       EMIT 
       burada durum şu bir modal açacağız, acacak buton burada, çünkü header da buton görünecek, tıklayınca LoginModal.vue adında comp çalışacak, ve bizim login ekranı görünecek, 
@@ -28,7 +29,12 @@
 </template>
 
 <script>
+import firebase from '../utilities/firebase'
 export default {
+  // props : ['isLoggedIn'],
+  // props : {isLoggedIn : Boolean},
+  // props : {isLoggedIn : {type : Boolean, default : false}}, //default vermek istersek
+   props : {isLoggedIn : {type : Boolean, required : true}}, //required da verebiliriz, illaki bu olmalı
   data() {
     return {
       list: [
@@ -38,6 +44,15 @@ export default {
         { title: "slider", to: "/slider" },
       ],
     };
+  },
+  methods: {
+    logout(){
+      firebase
+        .auth()
+        .signOut()
+        // .then((res) => {})
+        // .catch( (e) => {})
+    }
   },
 };
 </script>

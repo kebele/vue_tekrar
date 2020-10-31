@@ -5,6 +5,7 @@
       <article class="w-1/2 border">
         <!-- <textarea class="w-full h-full" v-model.lazy="text"></textarea> -->
         <textarea
+        ref="markdownTextArea"
           class="w-full h-full"
           :value="text"
           @input="update"
@@ -74,6 +75,9 @@ export default {
     markedText() {
       return marked(this.text);
     },
+  },
+  mounted() {
+    this.$refs.markdownTextArea.focus()
   },
 };
 </script>

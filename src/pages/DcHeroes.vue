@@ -17,6 +17,7 @@
         type="text"
         placeholder="add a hero"
         v-model="newHero"
+        ref="newHeroRef"
       />
       <button
         type="submit"
@@ -61,6 +62,10 @@ export default {
     remove(index) {
       this.dcHeroes = this.dcHeroes.filter((x, i) => i !== index);
     },
+  },
+  mounted() {
+    // console.log(this.$refs.newHeroRef)
+    this.$refs.newHeroRef.focus()
   },
 };
 </script>
