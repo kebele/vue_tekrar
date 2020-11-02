@@ -1,0 +1,100 @@
+
+🌟 Course Contents 🌟
+⏳ (00:00:00) Course Intro
+⏳ (00:06:19) Understanding Vue vs React
+⏳ (00:13:19) First Vue App
+⏳ (00:45:13) Vue Devtool and Vetur Extension
+⏳ (01:22:27) DC Heros List
+⏳ (02:37:19) Calendar App
+⏳ (03:15:12) Vue Router 
+⏳ (03:37:35) Markdown App
+⏳ (03:54:56) Vue Virtual DOM
+⏳ (04:07:01) Slider Carousel App
+⏳ (04:37:12) Login Modal App
+⏳ (05:00:00) Firebase Authentication
+⏳ (05:48:07) Vue 3 Teleport
+⏳ (05:51:30) Vue 3 composition API
+⏳ (06:10:10) Calculator App
+⏳ (06:54:31) Reusable Modal App
+⏳ (07:28:24) Real Time Chat App
+⏳ (08:00:21) Vuex 4
+⏳ (08:19:05) Custom Vue js Middleware
+⏳ (08:41:40) User Crud App
+⏳ (09:37:02) Object Detection with Tensorflow
+⏳ (10:15:31) Deploy On Netlify
+
+
+
+
+
+
+* firebase entegrasyonu ile login
+
+* firebase console dan yeni bir proje yapacağız, google anaytics olmasın, kurulduktan sonra authentication > giriş yöntemi > email/password > usttekini seçeceğiz alttaki email olmadan giriş onu seçmeyelim, users a gidip yeni bir user yapalım, firebse i uygulamamıza eklemek için gerekli yere girelim, web seçeceğiz, isim vereceğiz hosting istemiyoruz, bize birkod verecek bunu kopyalayıp, utulities > firebase.js dosyası yapıp içine yapışıracağız, şimdi npm ile firebase i projeye kuralım, npm install --save firebase, bize verdiği kodu module şeklinde düzenleyeceğiz, son hali var zaten,  
+son olarak export default firebase olarak export edeceğiz
+
+* şimdi yine firebase docs da authentication sekmesinde web e gidelim, get started > sign in existing user skısmına bakaım, çünkü bir kullanıcı kaydetmiştik zaten,  loginModal.vue ya gidelim, önce firebase i import edelim,  daha sonra da submit methodunu hazırlayalım, ve deneyelim
+
+*başarılı response geldi, şimdi giriş başarılı olduğunda login modal ı hide olsun, firebase docs da manage user a gidipget the currently signed user a gidelim, işlk ethodu kullanacağız, App.vue ya gideceğiz ve bu kopyaladığımız methodu mounted olarak kullanacağız, çünkü ana komponent bu eğr kullanıcı girş yaptıysa burada kontrolu olacak, tabi App.vue ya firebase i import etmeliyiz önce, sayfayı yenilediğimizd3e yani maount olduğunda bzim user gelecek direkt çnkü firebase giriş yapmıştık, 
+
+* data da gerekli tanımlamaları yaptık, denememizi yaptık sıkıtı yok
+* şimdi log out yapalım, yine docs dan bakacağız, password authentication içinde sign out kodunu alalım, AppHeader da login butonu yanına birde log out butonu yapalım, ve logout methodunuda AppHeader içine koyalım, 
+
+* App.vue ya mounted olarak koyduğumuz firebase.auth().onAuthStateChanged methodun anlamı authstate i değiştiğinde aşağıdaki işleri yap demek, 
+
+*  birde login a loading ekleyelim, loginModal.vue ya gdelim,data da ve methodumuzda değişiklikleri yapalım, loading olduğu esnada bir ikpon çıksın yada yazı fontı vs. butonun içinde, emoji koyduk, giriş başarılı old. inputları boşaltsın o ada tamam ve modal ı kapatsın, kapatmayı normalde emitleyerek yapıyorduk burada kapatma için method yazalım, ve onu kullanalım, emit i de o functionun içine koyalım, ve login sonrasına ekleyelim, deeyelim, başarılı
+
+* template ref konusu, mesela dc heroes deki input alalınıa ref girelim, ref="newHeroRef" bunuda mounted a koyalıım console a bakalım, proxy içinde geldi, bunu mounted içinden console.log(this.$refs.newHeroRef) olarak görek istersek 
+<input class="border rounded" type="text" placeholder="add a hero"> 
+gelir, mesela bununla mount ile beraber focus layabilirz
+this.$refs.newHeroRef.focus() ile, 
+
+* markdown.vue da textarea ya ref tanımlayalım, tamamlandı
+
+* loginModal.vue da email iputunada ref tanımlayalım, sıkıntı yok
+
+* şimdi login olduktan sonra login butonu kaybolsun onu yapalım, bunu props ile yapacağız, props u parenttan child a veri yollamakta kullanırız, passing data from parents to child
+şimdi App.vue dan AppHeader.vue da kullanılmak üzere dan aşağıdaki şekilde bir veri yolluyoruz
+<AppHeader isLoggedIn="isLoggedIn" @open-login-modal="isLoginOpen = true" />
+isLoggedIn olarak isLoggedIn i yolluyoruz, bunu AppHeader.vue dan da (child) yakalayacağız, AppHeader.vue ya gidip 
+props : ['isLoggedIn'],
+hazırlıyoruz yani bu isimle gelen şey props dur ve bunu yakala diyoruz, bunu child da yakaladık bu bilgiyi logout butonunda v-if olarak kullanıyoruz
+     <button  v-if="isLoggedIn" class="mx-2" @click="logout">logout</button>
+    <button v-else class="mx-2" @click="$emit('open-login-modal')">login</button>
+    şeklinde
+    props larda eğer gelecek props un tipinide belirtmek isitiyorsak bu sefer array değil object olarak hazırlarız, 
+    props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise // or any other constructor
+}
+
+* login with google ı yapalım, LoginModal.vue da butonu yapalım ve firebase docs a bakalım, oradan gerekli fdüzenlemeleri yaptıktan sonra firebase console dan authentication daki giriş seçeneklerindende google ı aktifleştirmemiz lazım, aha sonra login sonrası modal ı kapatması için gerekli close methodu eklemeliyiz, 
+
+* login with google başka bir componentte olabilir
+
+
+* calculator vue 3 özellikleri ile yapılacak, açıklamalrı componentin içinde
+
+* reusable modal yapımı, pages > ReusableModal.vue yapalım, router.js ya ekleyelim, 
+
+* components içine Modal.vue yapıp bunu ReusableModal.vue  içinde kullanacağız, 
+
+* slot kullanımı yapacağız, named slot kullanacağız, # kullanımı v-slot un kısaltılmışı
+burada aynı modal ı yani Modal.vue yu iki sefer kullanıyoruz ancak ikisi içinde ayrı değer kullanmalıyoz, bunu da named slot ile yapıyoruz
+#title Modal.vue da slot un adı titile burada #title olarak hazırlanmış yerdeki elementi alıyor buraya getiriyor, sonta burada #title olarak belittiğimiz yerdeki veriyi alıp orada name i title olan kısma basıyor ve ekrana veriyor, modal.vue title ve body isimli iki slot yapısı var onları buraya getiriyor, buradaki title ve body deki bilgiyi alıp getidiği ilgili slotlara basıyor, template şeklinde kualmndığımızıa dikkat named slot ları, 
+
+* #title kullanımı v-slot un kısaltılmış hali 
+  modaldaki sectinda bir yere tıklayınca oradaki close functionu buraya close u emitliyor nburada bunu yakalyınca bu emitlenen burada isModalOpen ın değerini değitiryor
+
+* reusable konusunda örneğin calculator daki window.addeventlistener kısmını balka bir soyayay taşıyor onu yeniden kullnaılabilir hale getirebiliriz, hatırlayalım, mounted ve unmounted hook larında function atamıştık, function keydown ile çalışıyordu ve window nesnesine erişerek çalışıyordu bunu calculator.vue dan alıp başka yere taşıyalım oradan export edip calculaor.vue dan da import edelim
+
+* utilities > composition > useWindowEevent.js yapalım, 
+
+* real time chat application with firebase, pages > chats.vue ile başlayalım, routes.js auyarlayalım sonrada AppHeader da ayarımızı yapalım, 
+
+* firebase e gidip projedeki realtime database e gidelim
