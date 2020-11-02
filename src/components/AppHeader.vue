@@ -42,6 +42,9 @@ export default {
         { title: "calendar", to: "/calendar" },
         { title: "markdown", to: "/markdown" },
         { title: "slider", to: "/slider" },
+        { title: "calculator", to: "/calculator" },
+        { title: "modal", to: "/reusable-modal" },
+        { title: "chat", to: "/chat" },
       ],
     };
   },

@@ -12,7 +12,7 @@
             <!-- <section class="my-5 text-center">
               <button class="border px-2 rounded" @click="loginWithGoogle">login with google</button>
             </section> -->
-            <GoogleLogin @close-login-from-google="close"/>
+            <GoogleLogin @close-login-from-google="close" />
             <p class="my-3 text-center">or</p>
             <form action="" class="p-2 my-2" @submit.prevent="submit">
               <div class="my-4">
@@ -31,7 +31,7 @@
                   type="password"
                   class="rounded shadow p-2 w-full"
                   placeholder="enter your password"
-                  v-model = "password"
+                  v-model="password"
                 />
               </div>
               <div class="my-4">
@@ -41,7 +41,6 @@
                 >
                   <span v-if="!isLoading">login</span>
                   <span v-else>⌛</span>
-                  
                 </button>
               </div>
             </form>
@@ -53,72 +52,75 @@
 </template>
 
 <script>
-import firebase from '../utilities/firebase'
-import GoogleLogin from '../components/login/GoogleLogin'
+import firebase from "../utilities/firebase";
+import GoogleLogin from "../components/login/GoogleLogin";
 
 export default {
-  components : {
+  components: {
     GoogleLogin,
   },
-    data(){
-        return {            
-                email : '',
-                password : '',
-                isLoading : false,            
-        }
+  data() {
+    return {
+      email: "",
+      password: "",
+      isLoading: false,
+    };
+  },
+  methods: {
+    submit() {
+      //submit the form
+      // console.log(this.form.email, this.form.password)
+      this.isLoading = true;
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((res) => {
+          console.log(res);
+          this.email = "";
+          this.password = "";
+          this.isLoading = false;
+          this.close();
+        })
+        .catch((e) => {
+          console.log(e);
+          this.isLoading = false;
+        });
     },
-    methods: {
-        submit(){
-            //submit the form
-            // console.log(this.form.email, this.form.password)
-            this.isLoading = true;            
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-              .then((res) => {
-                console.log(res)
-                this.email = ''
-                this.password = ''
-                this.isLoading = false
-                this.close()
-              }).catch((e) => {
-                console.log(e)
-                this.isLoading = false
-              })
-        },
-        close(){
-          this.$emit('close-login')
-        },
-//         loginWithGoogle(){
-//           var provider = new firebase.auth.GoogleAuthProvider();
+    close() {
+      this.$emit("close-login");
+    },
+    //         loginWithGoogle(){
+    //           var provider = new firebase.auth.GoogleAuthProvider();
 
-//           firebase
-//             .auth()
-//             .signInWithPopup(provider)
-//             // .then((result) => {
-//   // This gives you a Google Access Token. You can use it to access the Google API.
-//   // var token = result.credential.accessToken;
-//   // The signed-in user info.
-//   // var user = result.user;
-//   // ...
-// // })
-// // .catch(function(error) {
-// //   // Handle Errors here.
-// //   var errorCode = error.code;
-// //   var errorMessage = error.message;
-// //   // The email of the user's account used.
-// //   var email = error.email;
-// //   // The firebase.auth.AuthCredential type that was used.
-// //   var credential = error.credential;
-// //   // ...
-// // });
-//       .then(() => {
-//         this.close();
-//       })
-//     },
+    //           firebase
+    //             .auth()
+    //             .signInWithPopup(provider)
+    //             // .then((result) => {
+    //   // This gives you a Google Access Token. You can use it to access the Google API.
+    //   // var token = result.credential.accessToken;
+    //   // The signed-in user info.
+    //   // var user = result.user;
+    //   // ...
+    // // })
+    // // .catch(function(error) {
+    // //   // Handle Errors here.
+    // //   var errorCode = error.code;
+    // //   var errorMessage = error.message;
+    // //   // The email of the user's account used.
+    // //   var email = error.email;
+    // //   // The firebase.auth.AuthCredential type that was used.
+    // //   var credential = error.credential;
+    // //   // ...
+    // // });
+    //       .then(() => {
+    //         this.close();
+    //       })
+    //     },
     mounted() {
       this.$refs.emailRef.focus();
     },
-}
-}
+  },
+};
 </script>
 
 <style scoped></style>

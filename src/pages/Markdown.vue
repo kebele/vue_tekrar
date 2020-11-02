@@ -21,9 +21,11 @@
 
 <script>
 import marked from "marked";
-import debounce from "../utilities/mixins/debounce";
+// import debounce from "../utilities/mixins/debounce";
+//importtan debounce u kaldrdık çünkü composition daki useDebounce.js ile çözeceğiz, yeni yapıda vue 3 ile
 
-export default {
+
+// export default {
     // VUE LIFE CYCLE HOOKS
     // https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html#lifecycle-hooks
     // beforeCreate() {
@@ -50,11 +52,17 @@ export default {
     // updated() {
     //     console.log(" updated")
     // },
-  mixins: [debounce],
+
+  // mixins: [debounce], 
+  //mixin i kaldırdık çinkü bunu utilities>composition>useDebounce.js ile çözeceğiz ve aşağıdalki yapıyı d a setup method şeklinde yapacağız
+  import useDebounce from '../utilities/composition/useDebounce.js'
+
+    export default {
   data() {
     return {
       text: "",
       //   timeout: "", //debounce.js ye taşıdık
+      debounce : ""
     };
   },
   methods: {
@@ -77,6 +85,7 @@ export default {
     },
   },
   mounted() {
+    this.debounce = useDebounce();
     this.$refs.markdownTextArea.focus()
   },
 };
