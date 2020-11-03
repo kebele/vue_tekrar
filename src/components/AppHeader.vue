@@ -13,7 +13,10 @@
       >{{ item.title }}</router-link
     >
     <button  v-if="isLoggedIn" class="mx-2" @click="logout">logout</button>
-    <button v-else class="mx-2" @click="$emit('open-login-modal')">login</button>
+    <!-- isLoggedın artık computed den kontrol ediliyor, computed a da baktığımızda o da store a gidiyor -->
+    
+    <!-- <button v-else class="mx-2" @click="$emit('open-login-modal'>login</button> -->
+    <button v-else class="mx-2" @click="openLogin">login</button>
     <!-- 
       EMIT 
       burada durum şu bir modal açacağız, acacak buton burada, çünkü header da buton görünecek, tıklayınca LoginModal.vue adında comp çalışacak, ve bizim login ekranı görünecek, 
@@ -34,7 +37,9 @@ export default {
   // props : ['isLoggedIn'],
   // props : {isLoggedIn : Boolean},
   // props : {isLoggedIn : {type : Boolean, default : false}}, //default vermek istersek
-   props : {isLoggedIn : {type : Boolean, required : true}}, //required da verebiliriz, illaki bu olmalı
+  //  props : {isLoggedIn : {type : Boolean, required : true}}, 
+   //required da verebiliriz, illaki bu olmalı
+   //artık prop olarak liLoggedIn i almamıza gerek yok çünkü artık bu bilgiti store dan state olarak alacağımız için aşağıya data da hazırladık
   data() {
     return {
       list: [
@@ -48,6 +53,11 @@ export default {
       ],
     };
   },
+  computed: {
+    isLoggedIn(){
+      return this.$store.state.isLoggedIn
+    }
+  },
   methods: {
     logout(){
       firebase
@@ -55,6 +65,9 @@ export default {
         .signOut()
         // .then((res) => {})
         // .catch( (e) => {})
+    },
+    openLogin(){
+      this.$store.commit("setLoginModal",true);
     }
   },
 };

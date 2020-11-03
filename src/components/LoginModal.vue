@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isLoginOpen">
     <section
       @click="close"
       class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
@@ -59,6 +59,11 @@ export default {
   components: {
     GoogleLogin,
   },
+  computed: {
+      isLoginOpen(){
+        return this.$store.state.isLoginOpen
+      }
+    },
   data() {
     return {
       email: "",
@@ -87,7 +92,9 @@ export default {
         });
     },
     close() {
-      this.$emit("close-login");
+      // this.$emit("close-login");
+      //bunu store/state ile yapacağız artık
+      this.$store.commit("setLoginModal",false);
     },
     //         loginWithGoogle(){
     //           var provider = new firebase.auth.GoogleAuthProvider();
@@ -118,7 +125,7 @@ export default {
     //     },
     mounted() {
       this.$refs.emailRef.focus();
-    },
+    },    
   },
 };
 </script>
