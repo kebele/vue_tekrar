@@ -97,4 +97,55 @@ burada aynı modal ı yani Modal.vue yu iki sefer kullanıyoruz ancak ikisi içi
 
 * real time chat application with firebase, pages > chats.vue ile başlayalım, routes.js auyarlayalım sonrada AppHeader da ayarımızı yapalım, 
 
-* firebase e gidip projedeki realtime database e gidelim
+* firebase e gidip projedeki realtime database e gidelim, biz zaten firebase ebağlantı yapmıştık, bu yüzden direkt Chat.vue dan bağlanma kodlarını yazalım ancak bundan önce utilities > firebase e gidip firebase/database i import edelim, deneylim ok, db ile bağlandık, 
+
+* şimdi firebase db de manuel olarak bir chat hazırlayıp bunu çekmeye çalışalım, 
+
+* aşağıdaki kod ile firebase den hazırladığımız realtime db den hazırladığımız chat i çekebildik
+
+import { onMounted, ref } from 'vue'
+import firebase from "../utilities/firebase"
+
+    export default {
+        setup(){
+
+            const chats = ref({})
+            onMounted(async () => {
+                const db = firebase.database()
+                const collection =db.ref('chats')
+                const data = await collection.once("value")
+                // console.log(data.val())
+                chats.value = data.val();
+            })
+            return { chats }
+        }
+    }
+
+     <div v-for="chat in chats" :key="chat.message">{{chat.message}}</div>
+
+* realtime kodu, db de değişiklik olduğunda direkt sayfayı yenilemeden onu çekiyor, 
+
+          setup(){
+
+            // const chats = ref({}) 
+            //reactive olayını görelim
+            const state = reactive({
+                chats : {}
+            })
+            onMounted(async () => {
+                const db = firebase.database()
+                const collection =db.ref('chats')
+                const data = await collection.once("value")
+                // console.log(data.val())
+                // chats.value = data.val();
+                //reactive için
+                    state.chats = data.val()
+                collection.on('value', (snapshot) => {
+                    state.chats = snapshot.val()
+                })
+            })
+
+            // return { chats } //reactive için
+            return { state }
+        }
+    }
