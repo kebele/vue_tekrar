@@ -149,3 +149,80 @@ import firebase from "../utilities/firebase"
             return { state }
         }
     }
+
+
+
+
+
+
+
+* 
+
+
+
+
+
+
+
+* CRUD app with external api, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    * VUEX 
+
+    * vue 3 için install npm install vuex@next --save
+    * dosya yapısına bakalım, src > store > index.js içine getting startted daki index.js yapısını kpyalayalım, store onlara export edelim,  daha son ra main.js içine store u ekleyelim main.js içi
+      import { createApp } from 'vue'
+    import App from './App.vue'
+    import "./assets/style.css"
+    import router from './router'
+    import store from './store/index'
+
+    // createApp(App).mount('#app')
+    const app = createApp(App)
+    app.use(router)
+    app.use(store)
+    app.mount('#app')
+
+    * 
+
+
+
+
+
+
+
+
+
+
+* custom vue js middleware, router da redirect konusu, protecting route, navigation guards, beforeeach,
+
+* mesela home dan sayfaya girdik, chat e tıkladık, chat sayfası geldi, ama sisteme login olmadık daha, işte şimdi bu sıkıntının üzerine gidiyoruz, 
