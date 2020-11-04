@@ -50,6 +50,7 @@ export default {
         { title: "calculator", to: "/calculator" },
         { title: "modal", to: "/reusable-modal" },
         { title: "chat", to: "/chat" },
+        { title: "user crud", to: "/user-crud" },
       ],
     };
   },

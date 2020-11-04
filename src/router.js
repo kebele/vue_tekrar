@@ -7,6 +7,7 @@ import Markdown from "./pages/Markdown.vue";
 import Slider from "./pages/Slider.vue";
 import Calculator from "./pages/Calculator.vue";
 import ReusableModal from "./pages/ReusableModal.vue";
+import UserCrud from "./pages/UserCrud.vue";
 import Chat from "./pages/Chat.vue";
 import store from "./store/index";
 
@@ -37,6 +38,10 @@ const routes = [
     //buradaki sadece chat ile ilgili login olup olmadığını artık burada sorgulamayacağız, bunu src>middleware>auth.js ye taşıyıpr bu sorguyu orada yapacağız
     // },
   },
+  {
+    path: "/user-crud",
+    component: UserCrud,
+  }
 ];
 
 const router = createRouter({
