@@ -164,38 +164,6 @@ import firebase from "../utilities/firebase"
 
 
 
-* CRUD app with external api, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     * VUEX 
 
     * vue 3 için install npm install vuex@next --save
@@ -226,3 +194,44 @@ import firebase from "../utilities/firebase"
 * custom vue js middleware, router da redirect konusu, protecting route, navigation guards, beforeeach,
 
 * mesela home dan sayfaya girdik, chat e tıkladık, chat sayfası geldi, ama sisteme login olmadık daha, işte şimdi bu sıkıntının üzerine gidiyoruz, 
+
+
+
+
+
+
+
+
+
+
+* CRUD app with external api, npm i axios kuralım projeye ve https://reqres.in/ kullanacağız external API olarak, pages > UserCrud.vue hazırlayaralım, AppHeader.vue ya gidip header ını ayarlayalım, router.js ye gidip route unu ayarlayalım, 
+her taraf boş çünkü önceki hazırladığımız reqres e göreydi, 
+
+* şimdi UserCrud.vue ya bir add butonu ekleyelim, buda bir modal açsın oradan bilgileri girelim...
+
+* önceden hazırladığımız bir modal vardı, onu kullanalım, UserCrud.vue alt tarafına teleport ile modal ı kullanalım. 
+
+
+
+
+* axios için src > plugins > axios.js yaptık içine UserCrud.vue daki axios importunu ve axios baseUrl sini taşıdık, daha sonra oradan export edip yeniden UserCrud.vue dan import ettik, denemeyi yaptık sıkıntı yok, 
+
+* create, şimdi bu noktada API adresimizi değiştireceğiz, https://crudcrud.com/api/1cb8fe0125ac4d6bb79188497edfd15b
+bu crucrud ın bize verdiği API bunu .env ye gidip eskisiyle değiştirelim
+
+* butonu yaptık, modal ı teleport içine koyduk, butone açacak click i ve modalın knedisine de kapatacak olanı verdik
+
+* şimdi Modal içine body i de hazırlayalım, bir form olacak içinde name, email ve avatar url si olacak sonra bunu setup da form nesnesi içine bağlayacağız
+
+* bağladık ve reqres deki api den isim mail ve avatar adreslerini alıp yeni user girer gibi mopdalımızı açıp girdik ve crudcrud a eklememiz başarılı, formu boşaltalım, bunlardan bir kaç tane aldık, add user ile ekledik denemeler yaptık vs sıkıntı yok,
+
+* delete; için tabloyu düzenleyelim başlık actions td ye ise button koyalım, destroy functon oluşturalım vs. ... başarılı
+
+* şimdi src > components > UserCrud > Create.vue hazırlayalım
+
+
+
+
+
+
+* tensorflow
