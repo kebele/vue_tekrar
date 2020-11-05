@@ -227,11 +227,32 @@ bu crucrud ın bize verdiği API bunu .env ye gidip eskisiyle değiştirelim
 
 * delete; için tabloyu düzenleyelim başlık actions td ye ise button koyalım, destroy functon oluşturalım vs. ... başarılı
 
-* şimdi src > components > UserCrud > Create.vue hazırlayalım
+* şimdi src > components > UserCrud > Create.vue hazırlayalım, router.js ve AppHeader larını da düzenleyelim, 
+
+* daha sonra projeye https://github.com/tensorflow/tfjs-models/blob/master/coco-ssd/demo/package.json sayfasındaki dependecies leri 3+2 şeklinde yükleyelim, sonrada dokumantasyona gidelim, (https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd)
+buradaki npm kısmındaki require ları alıp Tensorflow.vue ya import edelim, 
+
+* sayfada yer alana çalışması için gerekli kodları,
+    (async () => {
+  const img = document.getElementById('img');
+
+  // Load the model.
+  const model = await cocoSsd.load();
+
+  // Classify the image.
+  const predictions = await model.detect(img);
+
+  console.log('Predictions: ');
+  console.log(predictions);
+})();
+
+mounted olarak yerleştirelim ve düzenleyelim,
+
+* 
 
 
 
 
 
 
-* tensorflow
+* tensorflow.js ile object detection, pages > Tensorflow.vue
