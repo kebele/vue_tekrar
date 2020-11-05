@@ -51,6 +51,7 @@ export default {
         { title: "modal", to: "/reusable-modal" },
         { title: "chat", to: "/chat" },
         { title: "user crud", to: "/user-crud" },
+        { title: "tensorflow", to: "/tensorflow" },
       ],
     };
   },

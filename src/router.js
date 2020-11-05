@@ -9,7 +9,9 @@ import Calculator from "./pages/Calculator.vue";
 import ReusableModal from "./pages/ReusableModal.vue";
 import UserCrud from "./pages/UserCrud.vue";
 import Chat from "./pages/Chat.vue";
+import Tensorflow from "./pages/Tensorflow.vue";
 import store from "./store/index";
+
 
 const routes = [
   { path: "/", component: Home },
@@ -38,10 +40,8 @@ const routes = [
     //buradaki sadece chat ile ilgili login olup olmadığını artık burada sorgulamayacağız, bunu src>middleware>auth.js ye taşıyıpr bu sorguyu orada yapacağız
     // },
   },
-  {
-    path: "/user-crud",
-    component: UserCrud,
-  }
+  { path: "/user-crud", component: UserCrud, },
+  { path: "/tensorflow", component: Tensorflow,},
 ];
 
 const router = createRouter({
